@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+</head>
+<body>
+    <h2>Contact Form</h2>
+    <form id="contactForm">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="phone">Phone Number:</label><br>
+        <input type="tel" id="phone" name="phone" required pattern="[0-9]{11}" placeholder="Enter 10-digit phone number"><br><br>
+        <button type="submit">Send Message on WhatsApp</button>
+    </form>
+
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get form values
+            var name = document.getElementById("name").value;
+            var phone = document.getElementById("phone").value;
+
+            // Construct the WhatsApp link with a clickable link to the surprise
+            var githubLink = "https://jtzy09.github.io/E-card/E-card.js.html";
+            var message = ", Click%20Here%20for%20Surprise%20" + encodeURIComponent(githubLink);
+            var link = "https://wa.me/" + phone + "?text=Hi%20" + encodeURIComponent(name) + message;
+
+            // Redirect user to the WhatsApp link
+            window.location.href = link;
+        });
+    </script>
+</body>
+</html>
