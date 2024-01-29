@@ -23,14 +23,25 @@
             var name = document.getElementById("name").value;
             var phone = document.getElementById("phone").value;
 
+            // Store the name in local storage
+            localStorage.setItem("name", name);
+
             // Construct the WhatsApp link with a clickable link to the surprise
             var githubLink = "https://jtzy09.github.io/E-card/E-card.js.html";
             var message = ", Click%20Here%20for%20Surprise%20" + encodeURIComponent(githubLink);
-            var link = "https://wa.me/" + phone + "?text=Hi%20" + encodeURIComponent(name) + message;
+            var link = "https://wa.me/" + phone + "?text=Hi%20" + encodeURIComponent(name) +  message;
 
             // Redirect user to the WhatsApp link
             window.location.href = link;
         });
+
+        // Retrieve the name from local storage
+        var storedName = localStorage.getItem("name");
+
+        // Display the name in the greeting message
+        if (storedName) {
+            document.getElementById("greetingName").innerText = storedName;
+        }
     </script>
 </body>
 </html>
