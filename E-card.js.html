@@ -17,15 +17,15 @@
         }
         h1 {
             color: #dc143c; /* Crimson */
-            font-size: 80px;
+            font-size: 5vw; /* Responsive font size */
         }
         p {
             color: #8b4513; /* Saddle Brown */
-            font-size: 30px;
+            font-size: 3vw; /* Responsive font size */
         }
         p2 {
             color: #dc143c; /* Crimson */
-            font-size: 30px;
+            font-size: 3vw; /* Responsive font size */
         }
         .card {
             background-color: #fdfdfd; /* White */
@@ -37,18 +37,34 @@
         }
         /* Positioning for the images */
         #dragonLeft {
-            position: fixed;
+            position: absolute;
             top: 50%;
             left: 0;
             transform: translateY(-50%);
             z-index: 9999; /* Ensure it's above other content */
         }
         #dragonRight {
-            position: fixed;
+            position: absolute;
             top: 50%;
             right: 0;
             transform: translateY(-50%);
             z-index: 9999; /* Ensure it's above other content */
+        }
+
+        /* Media query for smaller screens */
+        @media screen and (max-width: 600px) {
+            h1 {
+                font-size: 8vw; /* Adjust font size for smaller screens */
+            }
+            p, p2 {
+                font-size: 5vw; /* Adjust font size for smaller screens */
+            }
+            .container {
+                padding: 10px; /* Adjust padding for smaller screens */
+            }
+            .card {
+                max-width: 90%; /* Adjust maximum width for smaller screens */
+            }
         }
     </style>
 </head>
@@ -58,7 +74,7 @@
 
     <div class="container">
         <div class="card">
-            <h1>新年快乐, 万事如意 <span id="greetingName"></span>!</h1>
+            <h1>新年快乐, <span id="greetingName"></span>!</h1>
             <p>祝你身体健康长命百岁</p>
             <img src="Angpao.webp" alt="Chinese New Year Image" width="300">
             <br>
