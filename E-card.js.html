@@ -9,52 +9,75 @@
             font-family: Arial, sans-serif;
             background-image: url("CNY1.jpg");
             text-align: center;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
         }
         .container {
             padding: 20px;
         }
         h1 {
             color: #dc143c; /* Crimson */
+            font-size: 80px;
         }
         p {
             color: #8b4513; /* Saddle Brown */
+            font-size: 30px;
+        }
+        p2 {
+            color: #dc143c; /* Crimson */
+            font-size: 30px;
         }
         .card {
-            background-color: #fff; /* White */
+            background-color: #fdfdfd; /* White */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             max-width: 600px;
             margin: 0 auto;
         }
-        .footer {
-            margin-top: 20px;
-            font-style: italic;
+        /* Positioning for the images */
+        #dragonLeft {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            z-index: 9999; /* Ensure it's above other content */
+        }
+        #dragonRight {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            z-index: 9999; /* Ensure it's above other content */
         }
     </style>
 </head>
 <body>
+    <img id="dragonLeft" src="Dragon.gif" alt="Dragon Image" width="500">
+    <img id="dragonRight" src="Dragon.gif" alt="Dragon Image" width="500">
+
     <div class="container">
         <div class="card">
-            <h1>新年快乐, <span id="greetingName"></span>!</h1>
+            <h1>新年快乐, 万事如意 <span id="greetingName"></span>!</h1>
             <p>祝你身体健康长命百岁</p>
             <img src="Angpao.webp" alt="Chinese New Year Image" width="300">
             <br>
             <p2>红包拿来</p2>
         </div>
     </div>
+
     <audio controls autoplay loop>
         <source src="song.mp3" type="audio/mpeg">
         <source src="song.ogg" type="audio/ogg">
         Your browser does not support the audio element.
-      </audio>
-      
-      <script>
-          // Retrieve the name from local storage
-          var name = localStorage.getItem("name");
+    </audio>
 
-          // Display the name in the greeting message
-          document.getElementById("greetingName").innerText = name;
-      </script>
+    <script>
+        // Retrieve the name from local storage
+        var name = localStorage.getItem("name");
+
+        // Display the name in the greeting message
+        document.getElementById("greetingName").innerText = name;
+    </script>
 </body>
 </html>
