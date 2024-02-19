@@ -1,19 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Form</title>
+    <style>
+        #background {
+            background-image: url("What.jpg");
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 0; /* Adjust padding to 0 */
+            height: 100vh; /* Ensure the element covers the entire viewport */
+            overflow: hidden; /* Hide any content overflow */
+        }
+
+        h2 {
+            color: #000000; /* Black */
+            font-size: 5vw; /* Responsive font size */
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 2px solid rgb(245, 0, 0); /* Black */
+            border-radius: 10px;
+            background-color: #fafafa;
+            box-shadow: 0 0 10px rgba(206, 127, 0, 0.1);
+        }
+        form {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="tel"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-    <h2>Contact Form</h2>
-    <form id="contactForm">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
-        <label for="phone">Phone Number:</label><br>
-        <input type="tel" id="phone" name="phone" required pattern="[0-9]{11}" placeholder="Enter 10-digit phone number"><br><br>
-        <button type="submit">Send Message on WhatsApp</button>
-    </form>
+    <div id="background">
+        <div class="container">
+            <h2>Contact Form</h2>
+            <div class="card">
+                <form id="contactForm">
+                    <label for="name">Name:</label>
+                    <br>
+                    <input type="text" id="name" name="name" required><br>
+                    <br>
+                    <label for="phone">Phone Number:</label>
+                    <br>
+                    <input type="tel" id="phone" name="phone" required pattern="[0-9]{11}" placeholder="Enter phone number with country code +60"><br>
+                    <br>
+                    <button type="submit">Done</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script>
         document.getElementById("contactForm").addEventListener("submit", function(event) {
@@ -28,20 +89,12 @@
 
             // Construct the WhatsApp link with a clickable link to the surprise
             var githubLink = "https://jtzy09.github.io/E-card/E-card.js.html";
-            var message = ", Click%20Here%20for%20Surprise%20" + encodeURIComponent(githubLink);
-            var link = "https://wa.me/" + phone + "?text=Hi%20" + encodeURIComponent(name) +  message;
+            var message = ", Click Here for Surprise " + encodeURIComponent(githubLink);
+            var link = "https://wa.me/" + phone + "?text=Hi%20" + encodeURIComponent(name) + message;
 
             // Redirect user to the WhatsApp link
             window.location.href = link;
         });
-
-        // Retrieve the name from local storage
-        var storedName = localStorage.getItem("name");
-
-        // Display the name in the greeting message
-        if (storedName) {
-            document.getElementById("greetingName").innerText = storedName;
-        }
     </script>
 </body>
 </html>
