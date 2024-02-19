@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chinese New Year eCard</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url("CNY1.jpg");
-            text-align: center;
             margin: 0; /* Remove default margin */
             padding: 0; /* Remove default padding */
+        }
+        /* Background for the homepage */
+        #homePage {
+        background-color: black;
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+        padding: 0; /* Adjust padding to 0 */
+        height: 100vh; /* Ensure the element covers the entire viewport */
+        overflow: hidden; /* Hide any content overflow */
+        }
+
+        /* Background for the eCard page */
+        #eCardPage {
+            background-image: url("CNY1.jpg");
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 20px;
+            display: none;
         }
         .container {
             padding: 20px;
@@ -50,56 +66,61 @@
             transform: translateY(-50%);
             z-index: 9999; /* Ensure it's above other content */
         }
-
-        /* Media query for smaller screens */
-        @media screen and (max-width: 600px) {
-            h1 {
-                font-size: 8vw; /* Adjust font size for smaller screens */
-            }
-            p, p2 {
-                font-size: 5vw; /* Adjust font size for smaller screens */
-            }
-            .container {
-                padding: 10px; /* Adjust padding for smaller screens */
-            }
-            .card {
-                max-width: 90%; /* Adjust maximum width for smaller screens */
-            }
-            #dragonRight {
-                display: none;
-            }
-            #dragonLeft {
-                display: none;
-            }
+        /* Style for the button */
+        button {
+            background-color: #dc143c; /* Crimson */
+            color: white;
+            border: none;
+            padding: 10px 20px; /* Adjust padding to change button size */
+            font-size: 2vw; /* Adjust font size */
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px; /* Adjust margin to change vertical position */
         }
     </style>
 </head>
 <body>
-    <img id="dragonLeft" src="Dragon.gif" alt="Dragon Image" width="500">
-    <img id="dragonRight" src="Dragon.gif" alt="Dragon Image" width="500">
-
-    <div class="container">
-        <div class="card">
-            <h1>新年快乐, <br> 万事如意!</h1>
-            <p>祝你身体健康长命百岁</p>
-            <img src="Angpao.webp" alt="Chinese New Year Image" width="300">
-            <br>
-            <p2>红包拿来</p2>
-        </div>
+    <div id="homePage">
+        <h1>Totally not a Virus!</h1>
+        <button onclick="showECard()">Click for Suprise</button>
     </div>
 
-    <audio controls autoplay loop>
-        <source src="song2.mp4" type="audio/mpeg">
-        <source src="song.ogg" type="audio/ogg">
-        Your browser does not support the audio element.
-    </audio>
+    <div id="eCardPage">
+        <img id="dragonLeft" src="Dragon.gif" alt="Dragon Image" width="500">
+        <img id="dragonRight" src="Dragon.gif" alt="Dragon Image" width="500">
+
+        <div class="container">
+            <div class="card">
+                <h1>新年快乐, <br> 万事如意!</h1>
+                <p>祝你身体健康长命百岁</p>
+                <img src="Angpao.webp" alt="Chinese New Year Image" width="300">
+                <br>
+                <p2>红包拿来</p2>
+            </div>
+        </div>
+
+        <iframe src="Song.mp3" allow="autoplay" id="audio" style="display: none"></iframe>
+
+        <audio id="player" autoplay loop>
+            <source src="Song.mp3" type="audio/mp3">
+        </audio>
+    </div>
 
     <script>
-        // Retrieve the name from local storage
-        var name = localStorage.getItem("name");
+        function showECard() {
+            document.getElementById("homePage").style.display = "none";
+            document.getElementById("eCardPage").style.display = "block";
+            
+            // Play the audio
+            var audio = document.getElementById("player");
+            audio.play();
 
-        // Display the name in the greeting message
-        document.getElementById("greetingName").innerText = name;
+            // Retrieve the name from local storage
+            var name = localStorage.getItem("name");
+
+            // Display the name in the greeting message
+            document.getElementById("greetingName").innerText = name;
+        }
     </script>
 </body>
 </html>
