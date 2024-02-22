@@ -8,15 +8,55 @@
             margin: 0; /* Remove default margin */
             padding: 0; /* Remove default padding */
         }
+            @keyframes slideUp {
+        from {
+            transform: translateY(100%);
+        }
+        to {
+            transform: translateY(0);
+        }
+    }
+
+    #eCardPage {
+        animation: slideUp 0.5s ease forwards;
+    }
+
+        
+        /* Footer Form*/
+        .footercontainer {
+            width: 80%; /* Set the width to a percentage value */
+            max-width: 800px; /* Set a maximum width if needed */
+            margin: 0 auto;
+            padding: 20px;
+            border: 2px solid rgb(245, 0, 0); /* Black */
+            border-radius: 10px;
+            background-color: #fafafa;
+            box-shadow: 0 0 10px rgba(206, 127, 0, 0.1);
+            position: absolute; /* Position the form */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #footerbackground {
+            background-color: black;
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 0;
+            height: 400px; /* Adjust the height */
+            overflow: hidden;
+            position: relative;
+        }
+
         /* Background for the homepage */
         #homePage {
-        background-color: black;
-        background-size: cover;
-        background-position: center;
-        text-align: center;
-        padding: 0; /* Adjust padding to 0 */
-        height: 100vh; /* Ensure the element covers the entire viewport */
-        overflow: hidden; /* Hide any content overflow */
+            background-image: url(anonimous-hacker.gif);
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 0; /* Adjust padding to 0 */
+            height: 100vh; /* Ensure the element covers the entire viewport */
+            overflow: hidden; /* Hide any content overflow */
         }
 
         /* Background for the eCard page */
@@ -27,6 +67,7 @@
             text-align: center;
             padding: 20px;
             display: none;
+            position: relative; /* Relative positioning */
         }
         .container {
             padding: 20px;
@@ -79,10 +120,14 @@
         }
     </style>
 </head>
+
+
 <body>
+
+    
     <div id="homePage">
         <h1>Totally not a Virus!</h1>
-        <button onclick="showECard()">Click for Suprise</button>
+        <button onclick="showECard()">Click for Surprise</button>
     </div>
 
     <div id="eCardPage">
@@ -106,10 +151,36 @@
         </audio>
     </div>
 
+    <footer>
+        <div id="footerbackground">
+            <div class="footercontainer">
+                <h2>Contact Form</h2>
+                <div class="card">
+                    <form id="contactForm">
+                        <label for="name">Name:</label>
+                        <br>
+                        <input type="text" id="name" name="name" required><br>
+                        <br>
+                        <img src= "Whatsapp logo.png" alt="WhatsApp Logo" width="15" height="15">
+                        <label for="phone" >Phone Number:</label>
+                        <br>
+                        <input type="tel" id="phone" name="phone" required pattern="[0-9]{11}" placeholder="Country code +60"><br>
+                        <br>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
     <script>
         function showECard() {
+            // Hide the home page
             document.getElementById("homePage").style.display = "none";
-            document.getElementById("eCardPage").style.display = "block";
+            
+            // Show the eCard page
+            var eCardPage = document.getElementById("eCardPage");
+            eCardPage.style.display = "block";
             
             // Play the audio
             var audio = document.getElementById("player");
@@ -120,7 +191,27 @@
 
             // Display the name in the greeting message
             document.getElementById("greetingName").innerText = name;
-        }
+            }
+    </script>
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get form values
+            var name = document.getElementById("name").value;
+            var phone = document.getElementById("phone").value;
+
+            // Store the name in local storage
+            localStorage.setItem("name", name);
+
+            // Construct the WhatsApp link with a clickable link to the surprise
+            var githubLink = "https://jtzy09.github.io/E-card/E-card.js.html";
+            var message = ", Click Here for Surprise " + encodeURIComponent(githubLink);
+            var link = "https://wa.me/" + phone + "?text=Hi%20" + encodeURIComponent(name) + message;
+
+            // Redirect user to the WhatsApp link
+            window.location.href = link;
+        });
     </script>
 </body>
 </html>
